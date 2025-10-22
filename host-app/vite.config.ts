@@ -8,6 +8,8 @@ import federation from "@originjs/vite-plugin-federation";
  * 1. plugins: Array where you tell Vite which plugins to use when it:
  *    * Runs your dev server
  *    * Builds your production bundle
+ *    * Each plugin is basically a little (or big) piece of code 
+ *      that hooks into Vite’s build pipeline to add extra features 
  * 2. build: Controls how Vite produces the production build.
  */
 
@@ -31,6 +33,7 @@ export default defineConfig({
       name: "host_app",
       /**
        * Defines an external app (the “remote”) that exposes modules you can dynamically import.
+       * remoteEntry.js is the name of the file that your host will load when it tries to retrieve your exposed modules.
        */
       remotes: {
         remote_app: "http://localhost:5001/assets/remoteEntry.js",

@@ -71,3 +71,49 @@ export default defineConfig([
   },
 ])
 ```
+
+
+## How to Serve the Remote App and Run Your Host
+
+Due to how Vite works, you need to build the application before you preview / serve the application.
+
+```json
+# remote-app/package.json
+
+# "dev": "vite" Starts Vite’s development server (hot reload, local dev environment).
+# "build": "tsc -b && vite build" First compiles TypeScript (tsc -b = build mode, using tsconfig.json), then builds the production bundle using Vite.
+# "preview": "vite preview --port 5001 --strictPort" Launches a local static preview server that serves the production build at a fixed port (strictPort prevents fallback).
+# "serve": "npm run build && npm run preview" Combines build and preview: builds the project, then serves it so you can view the optimized build locally.
+
+
+
+"scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview --port 5001 --strictPort",
+    "serve": "npm run build && npm run preview"
+  },
+
+# host-app/package.json
+"scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview --port 5000 --strictPort",
+    "serve": "npm run build && npm run preview"
+  },
+```
+
+```json
+cd ./remote-app
+
+# run a build, and run / load the app on port 5000
+npm run serve
+
+# change to the host-app in another terminal 
+cd ../host-app
+
+# build and run the application
+npm run serve
+```

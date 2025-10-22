@@ -7,6 +7,8 @@ import federation from "@originjs/vite-plugin-federation";
  * 1. plugins: Array where you tell Vite which plugins to use when it:
  *    * Runs your dev server
  *    * Builds your production bundle
+ *    * Each plugin is basically a little (or big) piece of code 
+ *      that hooks into Vite’s build pipeline to add extra features 
  * 2. build: Controls how Vite produces the production build.
  * 3. preview: Controls how the application is served / previewed:
  *    * Useful in microfrontend setups where a fixed port and CORS enabled are needed so other apps can fetch your remote modules.
@@ -27,10 +29,13 @@ export default defineConfig({
       /**
        * The entry file generated when building this app.
        * It acts as the manifest that other apps (hosts) load to discover what modules you’ve exposed.
+       * This is the name of the file that your host will load when it tries to retrieve your exposed modules.
        */
       filename: "remoteEntry.js",
       /**
        * Declares which local files/components will be shared with other apps.
+       * A mapping of public module names → local file paths. 
+       * This is how you decide which parts of your code are available to be consumed remotely.
        */
       exposes: {
         "./Button": "./src/components/Button",
