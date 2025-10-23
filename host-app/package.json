@@ -1,5 +1,6 @@
 {
   "name": "host-app",
+  "homepage": "https://mfaradzh.github.io/micro-frontend/",
   "private": true,
   "version": "0.0.0",
   "type": "module",

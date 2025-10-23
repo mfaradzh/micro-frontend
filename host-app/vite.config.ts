@@ -63,4 +63,5 @@ export default defineConfig({
      */
     cssCodeSplit: false,
   },
+  base: "/micro-frontend"
 })
